@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
 			$this->session->set_flashdata($key, $value);
 		}
 		if(!$url){
-			$url = "?ref="
+			$url = "?ref=";
 		}
 		redirect($url, 'refresh');
 	}
