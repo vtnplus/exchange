@@ -1,13 +1,11 @@
 <div class="loginForm">
-
+<h2 class="text-left mb-4"><?php $this->views->lang("register_title");?></h2>
 <div class="card">
 	<div class="row">
 		
 		<div class="col">
 			<div class="card-body">
-			<div class="header-line">
-				<h2 class="text-left mb-4"><?php $this->views->lang("register_title");?></h2>
-			</div>
+			
                     <form role="form" method="post" action="<?php echo router("validate_register");?>" accept-charset="UTF-8">
                         <div class="form-group">
                             <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("email");?></label>

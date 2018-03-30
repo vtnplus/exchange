@@ -8,7 +8,7 @@ if(defined("BASE_ADMIN")){
 		include_once FCPATH."resource/router/admin.php";
 	}
 }else if(defined("BASE_API")){
-	$route['default_controller'] = 'api/dashboard';
+	$route['default_controller'] = 'home/get_index';
 }else if(defined("BASE_AUTH")){
 	$route['default_controller'] = 'auth/dashboard';
 }else{
@@ -17,9 +17,7 @@ if(defined("BASE_ADMIN")){
 $route['login'] = 'account/login';
 $route['register'] = 'account/register';
 $route['forget'] = 'account/forget';
-$route['logout'] = 'account/logout';
-$route['validate_register'] = 'account/validate_register';
-$route['validate_login'] = 'account/validate_login';
+$route['forget'] = 'account/logout';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

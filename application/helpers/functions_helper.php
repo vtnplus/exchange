@@ -1,10 +1,10 @@
 <?php
 function is_login(){
-	return 1;
+	return (isset($_SESSION["is_login"]) && intval($_SESSION["is_login"]) > 0 ? $_SESSION["is_login"] : false);
 }
 
 function is_admin(){
-	return true;
+	return 1;
 }
 
 function resource($data=""){
@@ -21,10 +21,14 @@ function router($data=""){
 
 function alert(){
 	if(isset($_SESSION["msg"])){
-		echo '<div class="alert alert-success" role="alert"><strong>Thông báo</strong><br>'.$_SESSION["msg"].'</div>';
+		echo '<div class="alert alert-success" role="alert"><h4 class="alert-heading">Thông báo!</h4>'.$_SESSION["msg"].'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button></div>';
 	}
 
 	if(isset($_SESSION["error"])){
-		echo '<div class="alert alert-danger" role="alert"><strong>Thông báo</strong><br>'.$_SESSION["error"].'</div>';
+		echo '<div class="alert alert-danger" role="alert"><h4 class="alert-heading">Thông báo!</h4>'.$_SESSION["error"].'<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button></div>';
 	}
 }
