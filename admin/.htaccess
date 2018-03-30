@@ -7,19 +7,6 @@
    
     RewriteCond %{REQUEST_URI} ^application.*
     RewriteRule ^(.*)$ /index.php?/$1 [L]
-
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api$ /api.php? [L]
-    RewriteRule ^api/(.*)$ /api.php?/$1 [L]
-
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^auth$ /member.php? [L]
-    RewriteRule ^auth/(.*)$ /member.php?/$1 [L]
-
     
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -49,6 +49,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+
+if(defined("BASE_ADMIN")){
+	
+	if(file_exists(FCPATH."resource/router/admin.php")){
+		include_once FCPATH."resource/router/admin.php";
+	}
+}else if(defined("BASE_API")){
+	$route['default_controller'] = 'api/dashboard';
+}else if(defined("BASE_AUTH")){
+	$route['default_controller'] = 'auth/dashboard';
+}else{
+	$route['default_controller'] = 'welcome';
+}
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
