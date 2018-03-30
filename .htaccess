@@ -1,4 +1,5 @@
 <IfModule mod_rewrite.c>
+    Options +FollowSymlinks
     RewriteEngine On
     RewriteBase /
     RewriteCond %{REQUEST_URI} ^system.*
@@ -8,23 +9,15 @@
     RewriteCond %{REQUEST_URI} ^application.*
     RewriteRule ^(.*)$ /index.php?/$1 [L]
 
-
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^api$ /api.php? [L]
-    RewriteRule ^api/(.*)$ /api.php?/$1 [L]
+    RewriteCond $1 !^(index\.php|admin)
+    RewriteRule ^admin(.*)$ ./admin/index.php?/$1 [QSA,L]
 
-
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^auth$ /member.php? [L]
-    RewriteRule ^auth/(.*)$ /member.php?/$1 [L]
-
-    
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond $1 !^(images|css|js)
-    RewriteRule ^(.*)$ index.php?/$1 [QSA,L]
+    RewriteRule ^(.*)$ ./index.php?/$1 [QSA,L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>

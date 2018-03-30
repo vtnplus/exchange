@@ -1,5 +1,5 @@
 <?php
-defined('BASE_ADMIN') OR exit('No direct script access allowed');
+defined('BASE_ADMIN') OR exit('No direct script access allowed admin');
 
 class Admin extends CI_Controller {
 
