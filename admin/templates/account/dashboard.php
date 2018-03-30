@@ -6,10 +6,13 @@
 		<table class="table table-hover">
 			<thead>
 				<th style="width: 50px;"></th>
+				<th><?php $this->views->lang("account_id");?></th>
 				<th><?php $this->views->lang("account_email");?></th>
 				<th><?php $this->views->lang("account_password");?></th>
 				<th><?php $this->views->lang("account_status");?></th>
-				<th><?php $this->views->lang("account_node");?></th>
+				<th><?php $this->views->lang("account_login");?></th>
+				<th><?php $this->views->lang("account_attach");?></th>
+				<th><?php $this->views->lang("account_lock");?></th>
 				
 				<th></th>
 			</thead>
@@ -17,10 +20,13 @@
 				<?php foreach ($data as $key => $value) { ?>
 				<tr>
 				<td><input type="checkbox" name="account_id[]" value="<?php echo $value->account_id;?>"></td>
+				<td><?php echo $value->account_id;?></td>
 				<td><?php echo $value->account_email;?></td>
 				<td><?php echo $value->account_password;?></td>
 				<td><?php echo $value->account_status;?></td>
-				<td><?php echo $value->account_node;?></td>
+				<td><?php echo $value->account_login;?></td>
+				<td><?php echo $value->account_attach;?></td>
+				<td><?php echo $value->account_lock;?></td>
 				
 				<td class="text-right"><a class="btn btn-info btn-sm" href="<?php echo admin_url("account/created/".$value->account_id);?>"><?php $this->views->lang("edit");?></a> <a class="btn btn-info btn-sm" href="<?php echo admin_url("account/delete/".$value->account_id);?>"><?php $this->views->lang("delete");?></a></td>
 				</tr>

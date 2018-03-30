@@ -47,6 +47,10 @@
     </form>
   </div>
 </nav>
-	<?php echo $data;?>
+<br>
+<div class="container-fluid">
+  <?php echo $data;?>
+</div>
+	
 </body>
 </html>

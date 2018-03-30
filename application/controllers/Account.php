@@ -18,18 +18,21 @@ class Account extends Admin {
 		if($this->input->post("submit") == 1){
 
 
+				$account_id = $this->input->post("account_id");
 				$account_email = $this->input->post("account_email");
 				$account_password = $this->input->post("account_password");
 				$account_status = $this->input->post("account_status");
-				$account_node = $this->input->post("account_node");
+				$account_login = $this->input->post("account_login");
+				$account_attach = $this->input->post("account_attach");
+				$account_lock = $this->input->post("account_lock");
 			
 
 
 			if(intval($id) == 0){
-				$this->db->query("insert into account (account_email, account_password, account_status, account_node) VALUES ('".$account_email."', '".$account_password."', '".$account_status."', '".$account_node."')");
+				$this->db->query("insert into account (account_id, account_email, account_password, account_status, account_login, account_attach, account_lock) VALUES ('".$account_id."', '".$account_email."', '".$account_password."', '".$account_status."', '".$account_login."', '".$account_attach."', '".$account_lock."')");
 				$this->go(admin_url('account/index'),["msg" => "Tạo thành công"]);
 			}else{
-				$this->db->query("update account set account_email = '".$account_email."', account_password = '".$account_password."', account_status = '".$account_status."', account_node = '".$account_node."' where account_id='".$id."'");
+				$this->db->query("update account set account_id = '".$account_id."', account_email = '".$account_email."', account_password = '".$account_password."', account_status = '".$account_status."', account_login = '".$account_login."', account_attach = '".$account_attach."', account_lock = '".$account_lock."' where account_id='".$id."'");
 				$this->go(admin_url('account/index'),["msg" => "Cập nhập thành công"]);
 			}
 

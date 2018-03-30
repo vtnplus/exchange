@@ -3,6 +3,6 @@ vendor
 package-lock.json
 composer.lock
 *.lock
-apps/config/database.php
+application/config/database.php
 .DS_Store
 */.DS_Store

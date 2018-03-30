@@ -60,15 +60,24 @@ class Tools extends Admin {
 		$zoomHtml = read_file(VIEWPATH."/genlayout/form.php");
 
 		$html = '';
+		$layout = explode("-",$this->input->post("layout"));
 		foreach ($arvm as $key => $value) {
 			$input = $this->geninput($key,$gen_data_field);
+			
 			$html .= '<div class="form-group row">
-    <label for="input_'.$key.'" class="col-sm-2 col-form-label">'.$key.'</label>
-    <div class="col-sm-10">
+    <label for="input_'.$key.'" class="col-sm-'.$layout[0].' col-form-label">'.$key.'</label>
+    <div class="col-sm-'.$layout[1].'">
       '.$input.'
     </div>
   </div>';
 		}
+
+		$html .= '<div class="form-group row">
+    <label for="input_'.$key.'" class="col-sm-'.$layout[0].' col-form-label">&nbsp;</label>
+    <div class="col-sm-'.$layout[1].'">
+      <button type="submit" name="submit" value="1">Submit</button>
+    </div>
+  </div>';
 
 		$html = str_replace('{{DATA}}',$html,$zoomHtml);
 		$html = str_replace('{{ACTION}}',$suppath.'/created/',$html);
@@ -129,12 +138,12 @@ class Tools extends Admin {
 
 
 	private function geninput($key,$arv=[]){
-		
-		if($arv[$key]->type == "varchar"){
+		$post = $this->input->post();
+		if($arv[$key]->type == "varchar" || $post[$key]["type_html"] == "text"){
 
-			$input = '<input type="text" name="'.$key.'" class="form-control" id="input_'.$key.'" placeholder="'.$key.'" value="<?php echo $data->'.$key.';?>" max-length="'.$arv[$key]->max_length.'">';
+			$input = '<input type="text" name="'.$key.'" class="form-control" id="input_'.$key.'" value="<?php echo $data->'.$key.';?>" max-length="'.$arv[$key]->max_length.'">';
 
-		}else if($arv[$key]->type == "int"){
+		}else if($arv[$key]->type == "int" || $post[$key]["type_html"] == "number"){
 			if($arv[$key]->max_length == 1){
 
 				
@@ -145,10 +154,28 @@ class Tools extends Admin {
 </div>';
 
 			}else{
-				$input = '<input type="number" name="'.$key.'" class="form-control" id="input_'.$key.'" placeholder="'.$key.'" value="<?php echo $data->'.$key.';?>">';
+				$input = '<input type="number" name="'.$key.'" class="form-control" id="input_'.$key.'" value="<?php echo $data->'.$key.';?>">';
 			}
-		}else if($arv[$key]->type == "text"){
-			$input = '<textarea  name="'.$key.'" class="form-control height-500" id="input_'.$key.'" placeholder="'.$key.'" ><?php echo $data->'.$key.';?></textarea>';
+		}else if($arv[$key]->type == "text" || $post[$key]["type_html"] == "textarea"){
+			$input = '<textarea  name="'.$key.'" class="form-control height-500" id="input_'.$key.'" ><?php echo $data->'.$key.';?></textarea>';
+		}else if($post[$key]["type_html"] == "select"){
+			$input = '<select type="number" name="'.$key.'" class="form-control" id="input_'.$key.'"><option value="">Select</option><option value="" <?php echo $data->'.$key.';?>></option></select>';
+		}else if($post[$key]["type_html"] == "datetime"){
+			$input = '<div class="row">';
+			
+			$input .= '<div class="col">';
+			$input .= '<input type="number" name="'.$key.'" class="form-control" id="input_'.$key.'" placeholder="Day" value="<?php echo $data->'.$key.';?>">';
+			$input .= '</div>';
+			
+			$input .= '<div class="col">';
+			$input .= '<input type="number" name="'.$key.'" class="form-control" id="input_'.$key.'" placeholder="Month" value="<?php echo $data->'.$key.';?>">';
+			$input .= '</div>';
+
+			$input .= '<div class="col">';
+			$input .= '<select type="number" name="'.$key.'" class="form-control" id="input_'.$key.'" value="<?php echo $data->'.$key.';?>"></select>';
+			$input .= '</div>';
+
+			$input .= '</div>';
 		}
 
 		return $input;
