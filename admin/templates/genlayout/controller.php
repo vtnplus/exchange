@@ -1,6 +1,6 @@
 <?php
 defined('BASE_ADMIN') OR exit('No direct script access allowed');
-include "Admin.php";
+use Apps\Controllers\Admin;
 class {{ClassName}} extends Admin {
 	public function __construct()
 	{

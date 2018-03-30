@@ -14,7 +14,7 @@ else
 
 	$system_path = './../system';
 
-	$application_folder = './../application';
+	$application_folder = './';
 
 	$view_folder = '';
 

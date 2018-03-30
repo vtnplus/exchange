@@ -112,7 +112,7 @@ switch (ENVIRONMENT)
 
 	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
 
-	define('VIEWPATH', FCPATH."templates".DIRECTORY_SEPARATOR);
+	define('VIEWPATH', FCPATH."templates/default".DIRECTORY_SEPARATOR);
 
 /*
  * --------------------------------------------------------------------
@@ -121,5 +121,6 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+require_once FCPATH.'vendor/autoload.php';
 require_once BASEPATH.'core/CodeIgniter.php';
 ?>

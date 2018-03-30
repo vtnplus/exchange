@@ -1,0 +1,14 @@
+body{
+	background-color: #f2f2f2;
+}
+.loginForm{
+	max-width: 450px;
+	margin: auto;
+}
+.pull-right{
+	float: right;
+}
+
+.pull-left{
+	float: left;
+}
