@@ -1,6 +1,11 @@
 body{
 	background-color: #f2f2f2;
 }
+ul{
+	padding:0;
+	margin: 0;
+	list-style: none; 
+}
 .loginForm{
 	max-width: 450px;
 	margin: auto;
@@ -50,6 +55,32 @@ body{
             animation: fadeIt 5s ease-in-out; 
 }
 
+.slidebar{
+	background-color: #FFF;
+	border-right:1px solid #ddd;
+	position: relative;
+}
+.nodesmall{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	right: -50px;
+	z-index: 100;
+}
+.fix400{
+	height: 400px;
+	min-width: 400px;
+	
+}
+.navtabs-history{
+	margin-left: -20px;
+	margin-right: -20px;
+	padding-left: 20px;
+}
+.sbox .card{
+	padding-bottom:15px; 
+}
 
 footer{
 	background-color:#e3eff5;
