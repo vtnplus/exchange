@@ -1,1 +1,0 @@
-Mot con bo den
