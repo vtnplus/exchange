@@ -5,4 +5,3 @@ composer.lock
 application/config/database.php
 .DS_Store
 */.DS_Store
-admin/config/database.php

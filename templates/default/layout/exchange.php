@@ -8,6 +8,7 @@
     
     <title>{{TITLE}}</title>
     <script type="text/javascript" src="<?php echo resource("js/app.js");?>"></script>
+    <script type="text/javascript" src="<?php echo resource("js/customs.js");?>"></script>
     <link href="<?php echo base_url("templates/default/css/app.css");?>" rel="stylesheet">
   </head>
 
@@ -18,10 +19,68 @@
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="slidebar nav col-lg-2">
-      <ul>
-        <li><a>BTC</a></li>
+    <nav class="sidebar col-lg-2">
+      <form class="bd-search d-flex align-items-center">
+          <input class="form-control" placeholder="Enter keyword">
+      </form>
+      <ul class="nav nav-tabs navtabs-coins">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">BTC</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">USDT</a>
+        </li>
       </ul>
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <table class="table table-hover">
+            <thead>
+              <th style="border-top:0;">S</th>
+              <th style="border-top:0;">Prices</th>
+              <th style="border-top:0;">Vol</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BTC</td>
+                <td>6700</td>
+                <td>89</td>
+              </tr>
+
+              <tr>
+                <td>ETH</td>
+                <td>6700</td>
+                <td>89</td>
+              </tr>
+
+
+              <tr>
+                <td>ETC</td>
+                <td>6700</td>
+                <td>89</td>
+              </tr>
+
+
+              <tr>
+                <td>NEO</td>
+                <td>6700</td>
+                <td>89</td>
+              </tr>
+
+
+              <tr>
+                <td>PIRL</td>
+                <td>6700</td>
+                <td>89</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div>
+
+      
       <div class="nodesmall"></div>
     </nav>
     <main class="col-md-12 col-lg-10" style="margin-top:15px;">
@@ -45,6 +104,7 @@
       $(".slidebar").css("margin-left","0");
     }
     $(".slidebar").height(height);
+    $(".navbar-brand").width($(".slidebar").outerWith());
   });
 </script>
 </body>

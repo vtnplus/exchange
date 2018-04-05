@@ -55,11 +55,20 @@ ul{
             animation: fadeIt 5s ease-in-out; 
 }
 
-.slidebar{
+.sidebar{
 	background-color: #FFF;
 	border-right:1px solid #ddd;
 	position: relative;
 }
+.sidebar > .bd-search{
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: 15px;
+	margin-left: -15px;
+	margin-right: -15px;
+	background-color:#f3f3f3; 
+}
+
 .nodesmall{
 	position: absolute;
 	width: 50px;
@@ -78,8 +87,13 @@ ul{
 	margin-right: -20px;
 	padding-left: 20px;
 }
+.navtabs-coins{
+	margin-left: -15px;
+	margin-right: -15px;
+	padding-left: 15px;
+}
 .sbox .card{
-	padding-bottom:15px; 
+	margin-bottom:15px !important; 
 }
 
 footer{

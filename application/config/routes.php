@@ -2,12 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-if(defined("BASE_ADMIN")){
-	
-	if(file_exists(FCPATH."resource/router/admin.php")){
-		include_once FCPATH."resource/router/admin.php";
-	}
-}else if(defined("BASE_API")){
+if(defined("BASE_API")){
 	$route['default_controller'] = 'api/dashboard';
 }else if(defined("BASE_AUTH")){
 	$route['default_controller'] = 'auth/dashboard';

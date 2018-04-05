@@ -65,4 +65,10 @@ class Views{
 			echo $lang;
 		}
 	}
+
+
+	public function json($arv=[]){
+		header('Content-Type: application/json');
+		echo json_encode($arv);
+	}
 }
