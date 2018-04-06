@@ -37,10 +37,10 @@
                     <div class="title-line"><span><?php $this->views->lang("or_with");?></span></div>
                     <div class="row">
                         <div class="col">
-                            <button type="submit" class="btn btn-warning btn-lg">Facebook</button>
+                            <a class="btn btn-info btn-sm" href="<?php echo router("account/facebook");?>">Facebook</a>
                         </div>
                         <div class="col text-right">
-                            <button type="submit" class="btn btn-info btn-lg">Google</button>
+                            <a class="btn btn-info btn-sm" href="<?php echo router("account/google");?>">Google</a>
                         </div>
                     </div>
 			</div>       
