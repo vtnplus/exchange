@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 use Apps\Programs\Base;
 class Account extends Base {
-	private $_api_url = "http://localhost/api";
+	
 	public function __construct()
 	{
 		parent::__construct();
@@ -43,7 +43,10 @@ class Account extends Base {
 
 	public function validate_login(){
 		
-		$data = $this->api("account/login",["username" => $this->input->post("email"), "password" => $this->input->post("password")]);
+		$data = $this->api("account/login",[
+			"username" => $this->input->post("email"), 
+			"password" => $this->input->post("password")
+		]);
 
 		if(isset($data["is_login"]) && intval($data["is_login"]) > 0){
 

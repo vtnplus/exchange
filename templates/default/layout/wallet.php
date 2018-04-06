@@ -23,37 +23,24 @@
       <form class="bd-search d-flex align-items-center">
           <input class="form-control" placeholder="Enter keyword">
       </form>
-      <ul class="nav nav-tabs navtabs-coins">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">BTC</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">USDT</a>
-        </li>
-      </ul>
+      
 
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <table class="table table-hover">
-            <thead>
-              <th style="border-top:0;">S</th>
-              <th style="border-top:0;">Prices</th>
-              <th style="border-top:0;">Vol</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>BTC</td>
-                <td>6700</td>
-                <td>89</td>
-              </tr>
+      <table class="table table-hover">
+        <thead>
+          <th style="border-top:0;">S</th>
+          <th style="border-top:0;">Prices</th>
+          <th style="border-top:0;">Vol</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BTC</td>
+            <td>6700</td>
+            <td>89</td>
+          </tr>
 
-              
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-      </div>
+          
+        </tbody>
+      </table>
 
       
       <div class="nodesmall"></div>
@@ -62,12 +49,13 @@
     <?php alert();?>
     <?php echo $data;?>
 
-    <footer>
-      <?php include __DIR__."/../footer.php";?>
-    </footer>
+    
     </main>
+  
 </div>
-
+<footer>
+  <?php include __DIR__."/../footer.php";?>
+</footer>
 <script type="text/javascript">
   $(document).ready(function(){
     var windowHeight = $("body").outerHeight();
