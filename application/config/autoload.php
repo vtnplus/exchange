@@ -58,7 +58,7 @@ $autoload['packages'] = array(FCPATH."/src");
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','session','Views');
+$autoload['libraries'] = array('session','Views');
 
 /*
 | -------------------------------------------------------------------
