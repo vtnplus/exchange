@@ -1,16 +1,13 @@
 <div class="row sbox">
 	<div class="col-md-8">
 		<div class="chart">
-			<div class="card">
-
-				<div class="card-body fix400"></div>
-			</div>
+			<div class="card-body fix400"></div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="network-prices">
-			<div class="card">
-				<div class="card-body fix400"></div>
+			<div class="card-body fix400">
+				<h4>Network Prices</h4>
 			</div>
 		</div>
 	</div>
@@ -22,7 +19,7 @@
 					<div class="col-md-6">
 						
 							<h4>Buy</h4>
-							Your Balancer :  0.000006 BTC
+							Your :  0.000006 BTC
 							<form>
 								<div class="form-group">
 		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
@@ -51,7 +48,7 @@
 					<div class="col-md-6">
 						
 							<h4>Sell</h4>
-							Your Balancer :  1 PIRL
+							Your :  1 PIRL
 							<form>
 								<div class="form-group">
 		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
@@ -92,7 +89,7 @@
 						
 							<div class="sroolHeader">
 								<h4>Buy</h4>
-								<table class="table table-hover" style="margin-bottom: 0;">
+								<table class="table table-hover table-sm" style="margin-bottom: 0;">
 									<thead>
 										<th class="col-xs-3" style="border-bottom:0;">Amout</th>
 										<th class="col-xs-3" style="border-bottom:0;">Prices</th>
@@ -101,7 +98,7 @@
 								</table>
 							</div>
 							<div class="sroolBody">
-								<table class="table table-hover">
+								<table class="table table-hover table-sm">
 									<tbody>
 										<?php for ($i=0; $i<=49;$i++) { ?>
 											
@@ -121,7 +118,7 @@
 						
 							<div class="sroolHeader">
 								<h4>Sell</h4>
-								<table class="table table-hover" style="margin-bottom: 0;">
+								<table class="table table-hover table-sm" style="margin-bottom: 0;">
 									<thead>
 										<th class="col-xs-3" style="border-bottom:0;">Amout</th>
 										<th class="col-xs-3" style="border-bottom:0;">Prices</th>
@@ -130,7 +127,7 @@
 								</table>
 							</div>
 							<div class="sroolBody">
-								<table class="table table-hover">
+								<table class="table table-hover table-sm">
 									<tbody>
 										<?php for ($i=0; $i<=49;$i++) { ?>
 											

@@ -59,6 +59,7 @@ ul{
 	background-color: #FFF;
 	border-right:1px solid #ddd;
 	position: relative;
+	margin-bottom:-30px; 
 }
 .sidebar > .bd-search{
 	padding: 15px;
@@ -66,7 +67,8 @@ ul{
 	margin-bottom: 15px;
 	margin-left: -15px;
 	margin-right: -15px;
-	background-color:#f3f3f3; 
+	background-color:#f3f3f3;
+
 }
 
 .nodesmall{
@@ -76,6 +78,7 @@ ul{
 	background-color: red;
 	right: -50px;
 	z-index: 100;
+	display: none;
 }
 .fix400{
 	height: 400px;
@@ -95,9 +98,11 @@ ul{
 .sbox .card{
 	margin-bottom:15px !important; 
 }
-
+main{
+	margin-bottom:0; 
+}
 footer{
-	background-color:#e3eff5;
+	border-top:1px solid #ddd;
 	margin-top: 30px;
 	padding-top: 30px;
 	padding-bottom: 30px; 

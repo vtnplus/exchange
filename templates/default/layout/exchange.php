@@ -19,7 +19,7 @@
 
 <div class="container-fluid">
     <div class="row">
-    <nav class="sidebar col-lg-2">
+    <nav class="sidebar col-lg-2 col-sm-hidden">
       <form class="bd-search d-flex align-items-center">
           <input class="form-control" placeholder="Enter keyword">
       </form>
@@ -47,32 +47,7 @@
                 <td>89</td>
               </tr>
 
-              <tr>
-                <td>ETH</td>
-                <td>6700</td>
-                <td>89</td>
-              </tr>
-
-
-              <tr>
-                <td>ETC</td>
-                <td>6700</td>
-                <td>89</td>
-              </tr>
-
-
-              <tr>
-                <td>NEO</td>
-                <td>6700</td>
-                <td>89</td>
-              </tr>
-
-
-              <tr>
-                <td>PIRL</td>
-                <td>6700</td>
-                <td>89</td>
-              </tr>
+              
             </tbody>
           </table>
         </div>
@@ -86,12 +61,14 @@
     <main class="col-md-12 col-lg-10" style="margin-top:15px;">
     <?php alert();?>
     <?php echo $data;?>
+
+    <footer>
+      <?php include __DIR__."/../footer.php";?>
+    </footer>
     </main>
   </div>
 </div>
-<footer>
-  <?php include __DIR__."/../footer.php";?>
-</footer>
+
 <script type="text/javascript">
   $(document).ready(function(){
     var windowHeight = $("body").outerHeight();
@@ -104,7 +81,8 @@
       $(".slidebar").css("margin-left","0");
     }
     $(".slidebar").height(height);
-    $(".navbar-brand").width($(".slidebar").outerWith());
+
+    $(".navbar-brand").width("200");
   });
 </script>
 </body>
