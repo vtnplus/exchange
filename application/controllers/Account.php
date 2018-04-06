@@ -25,20 +25,25 @@ class Account extends Base {
 	}
 
 	public function validate_register(){
-		$client = new Apps\Programs\Apiclient;
-		$data = $client->post($this->_api_url."/register",["username" => $this->input->post("email"), "password" => $this->input->post("password")]);
-		if(isset($data["msg"])){
-			$this->session->set_flashdata('msg', 'Bạn đăng ký thành công. Bạn có thể đăng nhập vào hệ thống');
-			redirect('/login', 'refresh');
-		}else{
+		
+		$data = $this->api("account/register",[
+			"username" => $this->input->post("email"), 
+			"password" => $this->input->post("password")
+		]);
+
+
+		if(isset($data["error"])){
 			$this->session->set_flashdata('error', 'Vui lòng kiểm tra lại thông tin đăng ký');
 			redirect('/register', 'refresh');
+		}else{
+			$this->session->set_flashdata('msg', 'Bạn đăng ký thành công. Bạn có thể đăng nhập vào hệ thống');
+			redirect('/login', 'refresh');
 		}
 	}
 
 	public function validate_login(){
-		$client = new Apps\Programs\Apiclient;
-		$data = $client->post($this->_api_url."/login",["username" => $this->input->post("email"), "password" => $this->input->post("password")]);
+		
+		$data = $this->api("account/login",["username" => $this->input->post("email"), "password" => $this->input->post("password")]);
 
 		if(isset($data["is_login"]) && intval($data["is_login"]) > 0){
 
@@ -60,5 +65,14 @@ class Account extends Base {
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('/', 'refresh');
+	}
+
+
+	public function google(){
+
+	}
+
+	public function facebook(){
+
 	}
 }
