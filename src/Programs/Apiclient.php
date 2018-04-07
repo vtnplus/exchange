@@ -21,10 +21,10 @@ class Apiclient
      */
     private $config = array(
         'port'          => NULL,
-        'auth'          => FALSE,
+        'auth'          => TRUE,
         'auth_type'     => 'basic',
-        'auth_username' => '',
-        'auth_password' => '',
+        'auth_username' => 'admin',
+        'auth_password' => 'anhkhoa123',
         'header'        => FALSE,
         'cookie'        => FALSE,
         'timeout'       => 30,
@@ -113,6 +113,7 @@ class Apiclient
         }
 
         $this->config = array_merge($this->config, (isset($config['restclient'])) ? $config['restclient'] : $config);
+
     }
 
     /**
@@ -358,9 +359,10 @@ class Apiclient
                 case 'basic':
                     curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
                     curl_setopt($curl, CURLOPT_USERPWD, "{$this->config['auth_username']}:{$this->config['auth_password']}");
+
             }
         }
-
+        
         // Si il y a des headers
         if (!empty($this->config['header']) && is_array($this->config['header'])) {
             // Ajoute les en-têtes

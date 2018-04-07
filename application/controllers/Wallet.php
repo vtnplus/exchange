@@ -13,7 +13,14 @@ class Wallet extends Base {
 	}
 
 	public function index(){
-		$data = $this->api("exchange/order");
-		return $this->views->layout("wallet/dashboard",["data" => $data]);
+		$coind = $this->api("coind");
+
+		return $this->views->layout("wallet/dashboard",["coind" => $coind]);
+	}
+
+	public function info($coind=""){
+		$coind = $this->api("coind");
+
+		return $this->views->layout("wallet/dashboard",["coind" => $coind]);
 	}
 }

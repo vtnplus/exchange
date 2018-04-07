@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Apps\Programs\Apiclient;
 class Base extends \CI_Controller {
 
-	private $_api_url = "http://localhost/api";
+	private $_api_url = "http://localhost.api:4444/";
 	private $api = null;
 	public function setAPI($url){
 		$this->_api_url = $url;

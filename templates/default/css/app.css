@@ -98,6 +98,15 @@ ul{
 .sbox .card{
 	margin-bottom:15px !important; 
 }
+
+.list-coind{
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.list-coind li{
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
 main{
 	margin-bottom:0; 
 }

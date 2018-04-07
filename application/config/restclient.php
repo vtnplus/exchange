@@ -2,8 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config['restclient'] = array(
-    'auth' => FALSE,
-    'auth_type' => 'session',
+    
+    'auth' => TRUE,
+    'auth_type' => 'basic',
     'auth_username' => 'admin',
     'auth_password' => 'anhkhoa123',
     'header' => FALSE,
