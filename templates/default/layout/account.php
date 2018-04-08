@@ -16,7 +16,7 @@
 <link href="{{TEMPLATE_URL}}/default/css/app.css" rel="stylesheet"/>
 </head>
 <body>
-	<?php alert();?>
+	
 	<?php echo $data;?>
 
 </body>

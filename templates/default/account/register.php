@@ -1,12 +1,14 @@
 <div class="loginForm">
+
 <h2 class="text-left mb-4"><?php $this->views->lang("register_title");?></h2>
+<?php alert();?>
 <div class="card">
 	<div class="row">
 		
 		<div class="col">
 			<div class="card-body">
 			
-                    <form role="form" method="post" action="<?php echo router("validate_register");?>" accept-charset="UTF-8">
+                    <form role="form" method="post" action="<?php echo router("register");?>" accept-charset="UTF-8">
                         <div class="form-group">
                             <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("email");?></label>
                             <div class="mx-auto">
@@ -27,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-primary btn-block btn-lg"><?php echo $this->views->lang("btn_register");?></button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" name="register" value="1"><?php echo $this->views->lang("btn_register");?></button>
                             </div>
                         </div>
                     </form>

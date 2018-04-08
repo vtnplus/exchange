@@ -9,14 +9,14 @@ class Wallet extends Base {
 		parent::__construct();
 		
 		$this->views->set_layout("layout/wallet");
-		
-
+		$this->api_login();
+		$this->views->set_globals(["coind" => $this->api("coind")]);
 	}
 
 	public function index(){
 		$coind = $this->api("coind");
 
-		return $this->views->layout("wallet/dashboard",["coind" => $coind]);
+		return $this->views->layout("wallet/dashboard");
 	}
 
 	public function info($symbol=""){
@@ -37,8 +37,6 @@ class Wallet extends Base {
 		$data = $this->api("wallet/history",["symbol" => $symbol]);
 		return $this->views->block("wallet/history",["data" => $data]);
 	}
-
-
 
 
 

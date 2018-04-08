@@ -4,6 +4,10 @@ class Views{
 	protected $init = null;
 	protected $lang = [];
 	public $layout = "layout/default";
+
+	private $globals = [];
+	private $layout_data = [];
+
 	public function __construct()
 	{
 		$this->init =& get_instance();
@@ -13,11 +17,23 @@ class Views{
 	public function set_layout($layout){
 		$this->layout = $layout;
 	}
+
+	public function layout_data(){
+
+	}
+
+	public function set_globals($arv=[]){
+		$this->globals = array_merge($this->globals,$arv);
+	}
+
 	public function layout($file=null,$data=[], $layout=false){
 		if(!$layout) $layout = $this->layout;
 		$this->loadLanguage("globals");
+		
+		$data = array_merge($this->globals, $data);
 
 		$datas = $this->block($file, $data, true);
+
 		$html = $this->init->load->view($layout, ["data" => $datas], true);
 
 		$search = [
