@@ -34,6 +34,9 @@ var getMyOrder = function(){
 
 };
 
+
+
+
 jQuery(document).ready(function(){
 	getOrder();
 	setInterval(getOrder, 5000);

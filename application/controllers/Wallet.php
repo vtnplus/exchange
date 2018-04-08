@@ -1,6 +1,7 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 use Apps\Programs\Base;
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Wallet extends Base {
 	
 	public function __construct()
@@ -18,9 +19,27 @@ class Wallet extends Base {
 		return $this->views->layout("wallet/dashboard",["coind" => $coind]);
 	}
 
-	public function info($coind=""){
+	public function info($symbol=""){
 		$coind = $this->api("coind");
+		$info = $this->api("wallet/balancer",["symbol" => $symbol]);
 
-		return $this->views->layout("wallet/dashboard",["coind" => $coind]);
+		return $this->views->layout("wallet/coind",["coind" => $coind, "info" => $info]);
 	}
+
+
+	public function general($symbol=""){
+		$this->api("wallet/general",["symbol" => $symbol]);
+		$this->go("wallet/info/".$symbol);
+	}
+
+
+	public function history($symbol=""){
+		$data = $this->api("wallet/history",["symbol" => $symbol]);
+		return $this->views->block("wallet/history",["data" => $data]);
+	}
+
+
+
+
+
 }
