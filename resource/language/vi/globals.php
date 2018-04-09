@@ -14,5 +14,7 @@ return [
 	"account_password" 	=> 	"Mật khẩu",
 	"forget_title"		=>	"Lấy lại mật khẩu",
 	"btn_forget"		=>	"Thực hiện",
-	"emailready"		=>	"Email này đã tồn tại"
+	"emailready"		=>	"Email này đã tồn tại",
+	"transictrade"		=>	"Chuyển vào trade",
+	"deposit"			=>	"Chuyển về sàn",
 ];

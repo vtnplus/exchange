@@ -22,6 +22,13 @@
                                 <input type="password" name="password" class="form-control" id="input2PasswordForm" placeholder="password" required="true">
                             </div>
                         </div>
+
+                        <?php if($this->config->item("open_recaptcha") == true){ ?>
+                        <div class="form-group">
+                            <?php echo $this->recaptcha->render(); ?>
+                        </div>
+                        <?php } ?>
+                        
                         <div class="form-group">
                             <label>
                                <a href="<?php echo router("register");?>"><?php echo $this->views->lang("register");?></a>

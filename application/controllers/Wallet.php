@@ -39,5 +39,18 @@ class Wallet extends Base {
 	}
 
 
+	public function withdraw(){
+		$withdraw = $this->input->post("withdraw");
+		$symbol = $this->input->post("symbol");
+		$data = $this->api("wallet/withdraw",["symbol" => $symbol, "withdraw" => $withdraw]);
+		return $this->views->json($data);
+	}
+
+	public function withdraw_trade(){
+		$sendtrade_amount = $this->input->post("sendtrade_amount");
+		$symbol = $this->input->post("symbol");
+		$data = $this->api("wallet/withdraw_trade",["symbol" => $symbol, "sendtrade_amount" => $sendtrade_amount]);
+		return $this->views->json([$symbol]);
+	}
 
 }

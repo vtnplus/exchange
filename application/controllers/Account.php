@@ -17,7 +17,15 @@ class Account extends Base {
 
 	public function login(){
 		
+		$this->load->library('recaptcha');
+
 		if($this->input->post("login") == 1){
+
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/login', 'refresh');
+			}
+
 			return $this->validate_login();
 		}
 
@@ -26,12 +34,41 @@ class Account extends Base {
 	}
 
 	public function register(){
+
+		$this->load->library('recaptcha');
+
 		if($this->input->post("register") == 1){
+			
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/register', 'refresh');
+			}
+
+
 			return $this->validate_register();
 		}
+		
 
 		return $this->views->layout('account/register');
 	
+	}
+
+
+
+	private function validate_captcha(){
+		$this->load->library('recaptcha');
+
+
+		$captcha_answer = $this->input->post('g-recaptcha-response');
+
+		// Verify user's answer
+		$response = $this->recaptcha->verifyResponse($captcha_answer);
+		// Processing ...
+		if ($response['success']) {
+		    return true;
+		} else {
+		    return false;
+		}
 	}
 
 	private function validate_register(){
@@ -77,6 +114,19 @@ class Account extends Base {
 	}
 
 	public function forget(){
+
+		$this->load->library('recaptcha');
+		
+		if($this->input->post("forget") == 1){
+
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/forget', 'refresh');
+			}
+
+			return $this->validate_login();
+		}
+
 		return $this->views->layout('account/forget',["title" => $this->views->lang("forget_title",true)]);
 	}
 

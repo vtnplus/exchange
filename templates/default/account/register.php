@@ -21,12 +21,20 @@
                                 <input type="password" name="password" class="form-control" id="input2PasswordForm" placeholder="password" required="">
                             </div>
                         </div>
+
+                        <?php if($this->config->item("open_recaptcha") == true){ ?>
+                        <div class="form-group">
+                            <?php echo $this->recaptcha->render(); ?>
+                        </div>
+                        <?php } ?>
                         <div class="form-group">
                             <label>
                                <a href="<?php echo router("login");?>"><?php echo $this->views->lang("login_title");?></a>
                             </label>
                             
                         </div>
+                       
+
                         <div class="form-group">
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg" name="register" value="1"><?php echo $this->views->lang("btn_register");?></button>

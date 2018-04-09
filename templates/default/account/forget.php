@@ -16,6 +16,13 @@
                             </div>
                         </div>
                         
+                        <?php if($this->config->item("open_recaptcha") == true){ ?>
+                        <div class="form-group">
+                            <?php echo $this->recaptcha->render(); ?>
+                        </div>
+                        <?php } ?>
+
+                        
                         <div class="form-group">
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary btn-block btn-lg"><?php echo $this->views->lang("btn_forget");?></button>
