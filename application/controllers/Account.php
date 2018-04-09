@@ -16,30 +16,80 @@ class Account extends Base {
 	}
 
 	public function login(){
+		
+		$this->load->library('recaptcha');
+
+		if($this->input->post("login") == 1){
+
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/login', 'refresh');
+			}
+
+			return $this->validate_login();
+		}
+
+
 		return $this->views->layout('account/login');
 	}
 
 	public function register(){
+
+		$this->load->library('recaptcha');
+
+		if($this->input->post("register") == 1){
+			
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/register', 'refresh');
+			}
+
+
+			return $this->validate_register();
+		}
+		
+
 		return $this->views->layout('account/register');
 	
 	}
 
-	public function validate_register(){
+
+
+	private function validate_captcha(){
+		$this->load->library('recaptcha');
+
+
+		$captcha_answer = $this->input->post('g-recaptcha-response');
+
+		// Verify user's answer
+		$response = $this->recaptcha->verifyResponse($captcha_answer);
+		// Processing ...
+		if ($response['success']) {
+		    return true;
+		} else {
+		    return false;
+		}
+	}
+
+	private function validate_register(){
 		
 		$data = $this->api("account/register",[
 			"username" => $this->input->post("email"), 
 			"password" => $this->input->post("password")
 		]);
 
+		
 
 		if(isset($data["error"])){
-			$this->session->set_flashdata('error', 'Vui lòng kiểm tra lại thông tin đăng ký');
-			redirect('/register', 'refresh');
+			$this->session->set_flashdata('error', $this->views->lang($data["error"],true));
+			return redirect('/register', 'refresh');
 		}else{
 			$this->session->set_flashdata('msg', 'Bạn đăng ký thành công. Bạn có thể đăng nhập vào hệ thống');
-			redirect('/login', 'refresh');
+			return redirect('/login', 'refresh');
 		}
 	}
+
+
 
 	public function validate_login(){
 		
@@ -47,6 +97,8 @@ class Account extends Base {
 			"username" => $this->input->post("email"), 
 			"password" => $this->input->post("password")
 		]);
+
+		
 
 		if(isset($data["is_login"]) && intval($data["is_login"]) > 0){
 
@@ -62,7 +114,20 @@ class Account extends Base {
 	}
 
 	public function forget(){
-		return $this->views->layout('account/forget');
+
+		$this->load->library('recaptcha');
+		
+		if($this->input->post("forget") == 1){
+
+			if($this->config->item("open_recaptcha") && !$this->validate_captcha()){
+				$this->session->set_flashdata('error', $this->views->lang("error_captcha",true));
+				return redirect('/forget', 'refresh');
+			}
+
+			return $this->validate_login();
+		}
+
+		return $this->views->layout('account/forget',["title" => $this->views->lang("forget_title",true)]);
 	}
 
 	public function logout(){
