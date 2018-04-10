@@ -39,7 +39,7 @@ class Views{
 		$search = [
 			'{{RESOURCE_URL}}' => base_url("resource"),
 			'{{TEMPLATE_URL}}' => base_url("templates"),
-			'{{TITLE}}' => (isset($data["title"]) ? $data["title"] : "CMINER Co.,Ltd")
+			'{{TITLE}}' => (isset($data["title"]) ? $data["title"] : $this->init->config->item("site_name"))
 		];
 
 		foreach ($search as $key => $value) {

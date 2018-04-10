@@ -13,8 +13,8 @@ $route['login'] = 'account/login';
 $route['register'] = 'account/register';
 $route['forget'] = 'account/forget';
 $route['logout'] = 'account/logout';
-$route['validate_register'] = 'account/validate_register';
-$route['validate_login'] = 'account/validate_login';
+$route['validate'] = 'account/validate';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

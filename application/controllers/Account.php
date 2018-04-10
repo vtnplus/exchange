@@ -99,13 +99,24 @@ class Account extends Base {
 		]);
 
 		
-
+		
 		if(isset($data["is_login"]) && intval($data["is_login"]) > 0){
-
 			$this->session->set_userdata(["is_login" => $data["is_login"],"token" => $data["token"]]);
 			$this->session->set_flashdata('msg', 'Đăng nhập thành công hiện tại bạn có thể sử dụng chức năng này');
 			redirect('/', 'refresh');
 			
+			
+		}else if(isset($data["is_validate"]) && intval($data["is_validate"]) > 0){
+			
+			if($data["security"] == "email"){
+				$this->sendmail($this->input->post("email"),"Login Security", "You code login :".$code);
+			}
+
+
+			$this->session->set_userdata(["is_validate" => $data["is_validate"],"token" => $data["token"]]);
+			$this->session->set_flashdata('msg', 'Đăng nhập thành công hiện tại bạn có thể sử dụng chức năng này');
+			redirect('/validate', 'refresh');
+
 		}else{
 			$this->session->set_flashdata('error', 'Tên đăng nhập khặc mật khẩu của bạn không đúng');
 			redirect('/login', 'refresh');
@@ -135,6 +146,29 @@ class Account extends Base {
 		redirect('/', 'refresh');
 	}
 
+
+
+	/*
+	Validate Code Login
+	*/
+
+	public function validate(){
+		$this->load->library('recaptcha');
+		if($this->input->post("validate") == 1){
+			$data = $this->api("account/validate",[
+				"code" 			=> $this->input->post("code"),
+				"account_id"	=>	$_SESSION["is_validate"]
+			]);
+			if(isset($data["is_login"]) && intval($data["is_login"]) > 0){
+				$this->session->set_userdata(["is_login" => $data["is_login"],"is_validate" => false,"token" => $data["token"]]);
+				$this->session->set_flashdata('msg', 'Đăng nhập thành công hiện tại bạn có thể sử dụng chức năng này');
+				redirect('/validate', 'refresh');
+			}
+		}
+
+		return $this->views->layout('account/validate',["title" => $this->views->lang("forget_title",true)]);
+
+	}
 
 	public function google(){
 

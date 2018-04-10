@@ -7,6 +7,17 @@ class Base extends \CI_Controller {
 	private $_api_url = "http://localhost:4444/";
 	private $api = null;
 	private $account = [];
+
+	public function __construct()
+	{
+		parent::__construct();
+		$config = $this->api("scripts/settings",[],"get");
+		foreach ($config as $key => $value) {
+			$this->config->set_item($key, $value);
+		}
+	}
+
+
 	public function setAPI($url){
 		$this->_api_url = $url;
 	}
