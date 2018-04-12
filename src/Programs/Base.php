@@ -15,6 +15,9 @@ class Base extends \CI_Controller {
 		foreach ($config as $key => $value) {
 			$this->config->set_item($key, $value);
 		}
+		if($this->config->item("api_server")){
+			$this->_api_url = $this->config->item("api_server");
+		}
 	}
 
 
