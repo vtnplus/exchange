@@ -30,13 +30,22 @@
         <li class="nav-item">
           <a class="nav-link" href="#">USDT</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">LTC</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">BTCR</a>
+        </li>
+
       </ul>
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <table class="table table-hover">
             <thead>
-              <th style="border-top:0;">S</th>
+              <th style="border-top:0;">Name</th>
               <th style="border-top:0;">Prices</th>
               <th style="border-top:0;">Vol</th>
             </thead>
