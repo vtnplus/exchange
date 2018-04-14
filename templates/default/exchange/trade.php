@@ -88,7 +88,7 @@
 						
 							<h4>Buy <div class="pull-right p_blancer">0.000006 <?php echo $coinbase;?></div></h4>
 							<hr>
-							<form>
+							<form class="buyForm">
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
 		                            <div class="col-sm-9 mx-auto">
@@ -99,21 +99,21 @@
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Amout" required="true">
+		                                <input type="text" name="amout" class="form-control" id="input2EmailForm" placeholder="Amout" required="true">
 		                            </div>
 		                        </div>
 
 		                        <div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
+		                                <input type="text" name="prices" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
 		                            </div>
 		                        </div>
 
 		                        <div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("Total");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
+		                                <input type="text" name="totals" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
 		                            </div>
 		                        </div>
 
@@ -147,14 +147,14 @@
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control input-sm" id="input2EmailForm" placeholder="email" required="true">
+		                                <input type="number" name="amout" class="form-control input-sm" id="input2EmailForm" placeholder="Amount" required="true">
 		                            </div>
 		                        </div>
 
 		                        <div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
 		                            </div>
 		                        </div>
 		                        <div class="form-group row">
@@ -317,104 +317,12 @@
 <script type="text/javascript">
 	var coinbase = '<?php echo $coinbase;?>';
 	var symbol = '<?php echo $symbol;?>';
+	var coinsbase_blancer = '<?php echo $symbol;?>';
+	var symbol_balancer = '<?php echo $symbol;?>';
 
 
 
-	var chart =	function(){
-		$.getJSON('/ohlcv.json', function (data) {
-
-		    // split the data set into ohlc and volume
-		    var ohlc = [],
-		        volume = [],
-		        dataLength = data.length,
-		        // set the allowed units for data grouping
-		        groupingUnits = [[
-		            'week',                         // unit name
-		            [1]                             // allowed multiples
-		        ], [
-		            'month',
-		            [1, 2, 3, 4, 6]
-		        ]],
-
-		        i = 0;
-
-		    for (i; i < dataLength; i += 1) {
-		        ohlc.push([
-		            data[i][0], // the date
-		            data[i][1], // open
-		            data[i][2], // high
-		            data[i][3], // low
-		            data[i][4] // close
-		        ]);
-
-		        volume.push([
-		            data[i][0], // the date
-		            data[i][5] // the volume
-		        ]);
-		    }
-
-
-		    // create the chart
-		    Highcharts.stockChart('containerChart', {
-
-		        rangeSelector: {
-		            selected: 1
-		        },
-
-		        title: {
-		            text: 'AAPL Historical'
-		        },
-
-		        yAxis: [{
-		            labels: {
-		                align: 'right',
-		                x: -3
-		            },
-		            title: {
-		                text: 'OHLC'
-		            },
-		            height: '60%',
-		            lineWidth: 2,
-		            resize: {
-		                enabled: true
-		            }
-		        }, {
-		            labels: {
-		                align: 'right',
-		                x: -3
-		            },
-		            title: {
-		                text: 'Volume'
-		            },
-		            top: '65%',
-		            height: '35%',
-		            offset: 0,
-		            lineWidth: 2
-		        }],
-
-		        tooltip: {
-		            split: true
-		        },
-
-		        series: [{
-		            type: 'candlestick',
-		            name: 'AAPL',
-		            data: ohlc,
-		            dataGrouping: {
-		                units: groupingUnits
-		            }
-		        }, {
-		            type: 'column',
-		            name: 'Volume',
-		            data: volume,
-		            yAxis: 1,
-		            dataGrouping: {
-		                units: groupingUnits
-		            }
-		        }]
-		    });
-		});
-	};
+	
 
 	$(document).ready(function(){
 
@@ -430,7 +338,10 @@
 		var height = $(".tradeBook").outerHeight() - $(".tradeBook .sroolHeader").first().outerHeight() - 30;
 		
 		$(".tradeBook .sroolBody").height(height);
+
 		chart();
+		//setInterval(chart, 60000);
+
 	});
 
 

@@ -135,11 +135,24 @@ class Account extends Base {
 				return redirect('/forget', 'refresh');
 			}
 
-			return $this->validate_login();
+			return $this->validate_forget();
 		}
 
 		return $this->views->layout('account/forget',["title" => $this->views->lang("forget_title",true)]);
 	}
+
+	private function validate_forget(){
+		$data = $this->api("account/forget",[
+			"email" => $this->input->post("email")
+		]);
+		if($data["code"]){
+			$this->sendmail($this->input->post("email"),"Forget Password", "Your Password : ".$data["code"]);
+			$this->session->set_flashdata('msg', $this->views->lang("resend_password",true));
+			return redirect('/login', 'refresh');
+		}
+		return false;
+	}
+
 
 	public function logout(){
 		$this->session->sess_destroy();

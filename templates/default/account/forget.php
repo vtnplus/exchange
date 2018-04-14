@@ -8,7 +8,7 @@
             
 			<div class="card-body">
 			
-                    <form role="form" method="post" action="<?php echo router("validate_forget");?>" accept-charset="UTF-8">
+                    <form role="form" method="post" action="<?php echo router("forget");?>" accept-charset="UTF-8">
                         <div class="form-group">
                             <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("email");?></label>
                             <div class="mx-auto">
