@@ -25,7 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url']  =  ($_SERVER['SERVER_PORT'] == 443 ? 'https' : 'http')."://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= preg_replace('@/+$@', '', dirname($_SERVER['SCRIPT_NAME'])).'/';
-$config['api_server'] = 'http://webapi.cminer.co/';
+$config['api_server'] = 'http://webapi.cminer.co/api/index.php/';
+//$config['api_server'] = 'http://localhost:4444/';
 /*
 |--------------------------------------------------------------------------
 | Index File

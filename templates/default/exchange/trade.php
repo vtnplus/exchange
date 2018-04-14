@@ -92,7 +92,7 @@
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                0.000006 <?php echo $coinbase;?>
+		                                <?php echo (is_login() ? $balancer["balancer_basecoins"] : 0);?> <?php echo $coinbase;?>
 		                            </div>
 		                        </div>
 
@@ -140,7 +140,7 @@
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <?php echo $balancer["balancer_trader"];?> <?php echo $symbol;?>
+		                                <?php echo (is_login() ? $balancer["balancer_trader"] : 0);?> <?php echo $symbol;?>
 		                            </div>
 		                        </div>
 

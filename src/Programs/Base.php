@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use Apps\Programs\Apiclient;
 class Base extends \CI_Controller {
 
-	private $_api_url = "http://localhost:4444/";
+	private $_api_url = "";
 	private $api = null;
 	private $account = [];
 
@@ -48,7 +48,7 @@ class Base extends \CI_Controller {
 		Set Access Account ID
 		*/
 
-		if($this->account && isset($this->account["account_id"]) && intval($this->account["account_id"]) > 0){
+		if(isset($this->account["account_id"]) && intval($this->account["account_id"]) > 0){
 
 			$arv = array_merge($arv, $this->account);
 
@@ -71,7 +71,7 @@ class Base extends \CI_Controller {
 			$data = $this->api->get($this->_api_url."/".$path, $arv);
 		}
 
-
+		
 
 		if(isset($data["success"]) == "ok" && isset($data["result"])){
 			return $data["result"];
