@@ -38,109 +38,19 @@
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 
 <div class="row sbox">
+
 	<div class="col-lg-9">
-		<div id="container" style="height: 550px; min-width: 310px"></div>
-
-		<br>
-
-		<div class="card">
-			<div class="card-body fix400">
-				<div class="row">
-					<div class="col-md-4">
-						
-							<h4>Buy</h4>
-							Your :  0.000006 <?php echo $coinbase;?>
-							<form>
-								<div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Amout" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("prices");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
-		                            </div>
-		                        </div>
-
-		                        <hr>
-		                        Total : <br>
-		                        Fee : 
-		                        <hr>
-		                        <button class="btn btn-primary btn-block">Buy</button>
-
-							</form>
-						
-					</div>
-
-					<div class="col-md-4">
-						
-							<h4>Sell</h4>
-							Your :  1 <?php echo $symbol;?>
-							<form>
-								<div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("prices");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
-		                            </div>
-		                        </div>
-
-		                        <hr>
-		                        Total : <br>
-		                        Fee : 
-		                        <hr>
-		                        <button class="btn btn-info btn-block">Sell</button>
-
-							</form>
-						
-					</div>
-
-
-					<div class="col-md-4">
-						
-							<h4>Stop Loss</h4>
-							Your :  1 <?php echo $symbol;?>
-							<form>
-								<div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("prices");?></label>
-		                            <div class="mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
-		                            </div>
-		                        </div>
-
-		                        <hr>
-		                        Total : <br>
-		                        Fee : 
-		                        <hr>
-		                        <button class="btn btn-info btn-block">Sell</button>
-
-							</form>
-						
-					</div>
-
-				</div>
-			</div>
-		</div>
+		<div id="containerChart" style="height: 550px; min-width: 310px"></div>
 	</div>
+
 	<div class="col-lg-3">
-		<div class="card">
+		<div class="card" id="zoomcontainerChart">
 			<div class="card-body">
+				<a href="" class="btn btn-sm btn-info">BTC</a>
+				<a href="" class="btn btn-sm btn-info">USDT</a>
+				<a href="" class="btn btn-sm btn-info">ETH</a>
+				<a href="" class="btn btn-sm btn-info">BTCR</a>
+
 				<table class="table table-hover">
 		            <thead>
 		              <th style="border-top:0;">Name</th>
@@ -161,10 +71,127 @@
 		    </div>
 		</div>
 
-		<div class="card">
+		
+	</div>
+
+	
+	
+	<div class="col-lg-12"><br></div>
+	
+
+	
+	<div class="col-lg-6">
+		<div class="card fix500">
 			<div class="card-body">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-6">
+						
+							<h4>Buy <div class="pull-right p_blancer">0.000006 <?php echo $coinbase;?></div></h4>
+							<hr>
+							<form>
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                0.000006 <?php echo $coinbase;?>
+		                            </div>
+		                        </div>
+
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Amout" required="true">
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("Total");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
+		                            </div>
+		                        </div>
+
+		                        <hr>
+		                        
+		                        Fee : 
+		                        <hr>
+		                        <?php if(!is_login()){ ?>
+		                        <button class="btn btn-primary">Login and Buy</button>
+		                    	<?php }else{ ?>
+		                    	<button class="btn btn-primary">Buy</button>
+		                    	<?php } ?>
+		                        
+
+							</form>
+						
+					</div>
+
+					<div class="col-md-6">
+						
+							<h4>Sell <div class="pull-right p_blancer">1 <?php echo $symbol;?></div></h4>
+							<hr>
+							<form>
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <?php echo $balancer["balancer_trader"];?> <?php echo $symbol;?>
+		                            </div>
+		                        </div>
+
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control input-sm" id="input2EmailForm" placeholder="email" required="true">
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
+		                            </div>
+		                        </div>
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 col-form-label"><?php echo $this->views->lang("Total");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
+		                            </div>
+		                        </div>
+		                        <hr>
+		                        
+		                        Fee : 
+		                        <hr>
+
+		                        <?php if(!is_login()){ ?>
+		                        <button class="btn btn-primary">Login and Sell</button>
+		                    	<?php }else{ ?>
+		                    	<button class="btn btn-info">Sell</button>
+		                    	<?php } ?>
+
+		                       
+
+							</form>
+						
+					</div>
+
+
+					
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-6">
+		<div class="card fix500">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
 						
 							<div class="sroolHeader">
 								<h4>Buy</h4>
@@ -193,7 +220,7 @@
 						
 					</div>
 
-					<div class="col-md-12">
+					<div class="col-md-6">
 						
 							<div class="sroolHeader">
 								<h4>Sell</h4>
@@ -226,10 +253,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-lg-12"><br></div>
-	
-
-	
 
 	<!--//My Trade -->
 	<div class="col-md-6">
@@ -332,7 +355,7 @@
 
 
 		    // create the chart
-		    Highcharts.stockChart('container', {
+		    Highcharts.stockChart('containerChart', {
 
 		        rangeSelector: {
 		            selected: 1
@@ -394,6 +417,10 @@
 	};
 
 	$(document).ready(function(){
+
+		var containerChart = $("#containerChart").height();
+		$("#zoomcontainerChart").height(containerChart);
+
 		$(".orderBook .sroolBody").each(function(index, value){
 			var height = $(this).parent().outerHeight() - $(this).parent().find(".sroolHeader").outerHeight() - 30;
 
