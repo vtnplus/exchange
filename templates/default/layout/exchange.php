@@ -50,12 +50,13 @@
               <th style="border-top:0;">Vol</th>
             </thead>
             <tbody>
+              <?php foreach ($coind as $key => $value) { ?>
               <tr>
-                <td>BTC</td>
+                <td><a href="<?php echo router("exchange/trade/BTC/".$value["symbol"]);?>"><?php echo $value["symbol"];?></a></td>
                 <td>6700</td>
                 <td>89</td>
               </tr>
-
+              <?php } ?>
               
             </tbody>
           </table>
