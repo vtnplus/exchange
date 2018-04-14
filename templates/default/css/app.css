@@ -6,6 +6,24 @@ ul{
 	margin: 0;
 	list-style: none; 
 }
+.tabs-span-node div{
+	width: 15%;
+	float: left;
+	max-width: 15%;
+}
+.tabs-span-node:before{
+	clear: both;
+}
+.tabs-span-node{
+	overflow: hidden;
+	background-color: #FFF;
+	margin-bottom: 30px;
+	margin-left:-15px;
+	margin-right:-15px;
+	margin-top:-15px; 
+	padding:15px;
+
+}
 .loginForm{
 	max-width: 450px;
 	margin: auto;

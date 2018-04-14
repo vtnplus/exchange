@@ -23,23 +23,7 @@
       <form class="bd-search d-flex align-items-center">
           <input class="form-control" placeholder="Enter keyword">
       </form>
-      <ul class="nav nav-tabs navtabs-coins">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">BTC</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">USDT</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">LTC</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">BTCR</a>
-        </li>
-
-      </ul>
+      
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">

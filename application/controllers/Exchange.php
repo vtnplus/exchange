@@ -7,7 +7,7 @@ class Exchange extends Base {
 	{
 		parent::__construct();
 		
-		$this->views->set_layout("layout/exchange");
+		$this->views->set_layout("layout/static-exchange");
 		$this->views->set_globals(["coind" => $this->api("coind")]);
 		
 
@@ -22,6 +22,7 @@ class Exchange extends Base {
 
 	public function trade($coinbase, $symbol){
 		$data = $this->api("exchange/order");
+		$this->views->set_globals(["coinbase" => $coinbase, "symbol" => $symbol]);
 		return $this->views->layout("exchange/trade",["data" => $data,"coinbase" => $coinbase, "symbol" => $symbol]);
 	}
 }

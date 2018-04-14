@@ -1,16 +1,52 @@
+<div class="tabs-span-node">
+	<div>
+		<h4><?php echo $coinbase;?>/<?php echo $symbol;?></h4>
+	</div>
+
+	<div>
+		Giá gần nhất<br>
+		0.062710 $502.31
+	</div>
+
+
+	<div>
+		Thay đổi giá 24h<br>
+		-0.000252 -0.40%
+	</div>
+
+
+	<div>
+		Giá cao nhất 24h<br>
+		0.064686
+	</div>
+	
+	<div>
+		Giá thấp nhất 24h<br>
+		0.062100
+	</div>
+
+	<div>
+		Khối lượng 24h<br>
+		11,011.69 BTC
+	</div>
+
+
+</div>
+
 <script src="https://code.highcharts.com/stock/highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
 <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
-<div id="container" style="height: 550px; min-width: 310px"></div>
-<br>
-<div class="row sbox">
-	
 
-	<div class="col-md-6">
+<div class="row sbox">
+	<div class="col-lg-9">
+		<div id="container" style="height: 550px; min-width: 310px"></div>
+
+		<br>
+
 		<div class="card">
 			<div class="card-body fix400">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-4">
 						
 							<h4>Buy</h4>
 							Your :  0.000006 <?php echo $coinbase;?>
@@ -39,9 +75,39 @@
 						
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-4">
 						
 							<h4>Sell</h4>
+							Your :  1 <?php echo $symbol;?>
+							<form>
+								<div class="form-group">
+		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("amout");?></label>
+		                            <div class="mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group">
+		                            <label for="input2EmailForm" class="form-control-label"><?php echo $this->views->lang("prices");?></label>
+		                            <div class="mx-auto">
+		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="email" required="true">
+		                            </div>
+		                        </div>
+
+		                        <hr>
+		                        Total : <br>
+		                        Fee : 
+		                        <hr>
+		                        <button class="btn btn-info btn-block">Sell</button>
+
+							</form>
+						
+					</div>
+
+
+					<div class="col-md-4">
+						
+							<h4>Stop Loss</h4>
 							Your :  1 <?php echo $symbol;?>
 							<form>
 								<div class="form-group">
@@ -72,14 +138,33 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!--// Trade task //-->
-	<div class="col-md-6">
+	<div class="col-lg-3">
 		<div class="card">
-			<div class="card-body fix400 tradeBook">
+			<div class="card-body">
+				<table class="table table-hover">
+		            <thead>
+		              <th style="border-top:0;">Name</th>
+		              <th style="border-top:0;">Prices</th>
+		              <th style="border-top:0;">Vol</th>
+		            </thead>
+		            <tbody>
+		              <?php foreach ($coind as $key => $value) { ?>
+		              <tr>
+		                <td><a href="<?php echo router("exchange/trade/BTC/".$value["symbol"]);?>"><?php echo $value["symbol"];?></a></td>
+		                <td>6700</td>
+		                <td>89</td>
+		              </tr>
+		              <?php } ?>
+		              
+		            </tbody>
+		          </table>
+		    </div>
+		</div>
+
+		<div class="card">
+			<div class="card-body">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						
 							<div class="sroolHeader">
 								<h4>Buy</h4>
@@ -94,7 +179,7 @@
 							<div class="sroolBody">
 								<table class="table table-hover table-sm">
 									<tbody>
-										<?php for ($i=0; $i<=49;$i++) { ?>
+										<?php for ($i=0; $i<=10;$i++) { ?>
 											
 										<tr id="item-<?php echo $i;?>">
 											<td class="col-xs-3">-</td>
@@ -108,7 +193,7 @@
 						
 					</div>
 
-					<div class="col-md-6">
+					<div class="col-md-12">
 						
 							<div class="sroolHeader">
 								<h4>Sell</h4>
@@ -123,7 +208,7 @@
 							<div class="sroolBody">
 								<table class="table table-hover table-sm">
 									<tbody>
-										<?php for ($i=0; $i<=49;$i++) { ?>
+										<?php for ($i=0; $i<=10;$i++) { ?>
 											
 										<tr id="item-<?php echo $i;?>">
 											<td class="col-xs-3">-</td>
@@ -141,6 +226,10 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-lg-12"><br></div>
+	
+
+	
 
 	<!--//My Trade -->
 	<div class="col-md-6">
