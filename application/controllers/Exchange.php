@@ -8,7 +8,7 @@ class Exchange extends Base {
 		parent::__construct();
 		
 		$this->views->set_layout("layout/static-exchange");
-		$this->views->set_globals(["coind" => $this->api("coind")]);
+		//$this->views->set_globals([]);
 		
 
 	}
@@ -21,9 +21,19 @@ class Exchange extends Base {
 
 	public function trade($coinbase, $symbol){
 		$data = $this->api("exchange/order",["symbol" => $symbol,"basecoins" => $coinbase]);
-		$balancer = $this->api("wallet/balancer",["symbol" => $symbol,"basecoins" => $coinbase]);
+		$balancer = $this->set_login()->api("wallet/balancer",["symbol" => $symbol,"basecoins" => $coinbase]);
 		
-		$this->views->set_globals(["coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer]);
-		return $this->views->layout("exchange/trade",["data" => $data,"coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer]);
+		$this->views->set_globals(["coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer,"coind" => $this->api("coind",["basecoins" => $coinbase])]);
+		
+		return $this->views->layout("exchange/trade",["title" => $coinbase."-".$symbol." Trader", "data" => $data,"coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer]);
+	}
+
+	public function order($coinbase, $symbol){
+		$data = $this->api("exchange/order",["symbol" => $symbol,"basecoins" => $coinbase]);
+		return $this->views->json($data);
+	}
+
+	public function submit(){
+
 	}
 }

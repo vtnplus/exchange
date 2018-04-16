@@ -25,7 +25,7 @@
                         
                         <div class="form-group">
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-primary btn-block btn-lg"><?php echo $this->views->lang("btn_forget");?></button>
+                                <button type="submit" class="btn btn-primary btn-block btn-lg" name="forget" value="1"><?php echo $this->views->lang("btn_forget");?></button>
                             </div>
                         </div>
                     </form>

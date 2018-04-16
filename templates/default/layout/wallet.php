@@ -27,7 +27,7 @@
 
         <ul class="list-coind">
           <?php foreach ($coind as $key => $value) { ?>
-              <li><a href="<?php echo router("wallet/info/".$value["symbol"]);?>" title="<?php echo $value["name"];?>"><?php echo $value["symbol"];?></a></li>
+              <li><a href="<?php echo router("wallet/info/".$value["symbol"]);?>" title="<?php echo $value["name"];?>"> <?php echo ($value["coind_icoins"] ? '<img src="'.$value["coind_icoins"].'">' : "");?> <?php echo $value["symbol"];?></a></li>
           <?php } ?>
         </ul>
 

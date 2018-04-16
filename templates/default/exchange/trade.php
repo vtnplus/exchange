@@ -46,10 +46,10 @@
 	<div class="col-lg-3">
 		<div class="card" id="zoomcontainerChart">
 			<div class="card-body">
-				<a href="" class="btn btn-sm btn-info">BTC</a>
-				<a href="" class="btn btn-sm btn-info">USDT</a>
-				<a href="" class="btn btn-sm btn-info">ETH</a>
-				<a href="" class="btn btn-sm btn-info">BTCR</a>
+				<a href="<?php echo router("exchange/trade/BTC/".$symbol);?>" class="btn btn-sm btn-<?php echo ($coinbase == "BTC" ? "info" : "default");?>">BTC</a>
+				<a href="<?php echo router("exchange/trade/USDT/".$symbol);?>" class="btn btn-sm btn-<?php echo ($coinbase == "USDT" ? "info" : "default");?>">USDT</a>
+				<a href="<?php echo router("exchange/trade/ETH/".$symbol);?>" class="btn btn-sm btn-<?php echo ($coinbase == "ETH" ? "info" : "default");?>">ETH</a>
+				<a href="<?php echo router("exchange/trade/BTCR/".$symbol);?>" class="btn btn-sm btn-<?php echo ($coinbase == "BTCR" ? "info" : "default");?>">BTCR</a>
 
 				<table class="table table-hover">
 		            <thead>
@@ -60,7 +60,7 @@
 		            <tbody>
 		              <?php foreach ($coind as $key => $value) { ?>
 		              <tr>
-		                <td><a href="<?php echo router("exchange/trade/BTC/".$value["symbol"]);?>"><?php echo $value["symbol"];?></a></td>
+		                <td><a href="<?php echo router("exchange/trade/".$coinbase."/".$value["symbol"]);?>"><?php echo ($value["coind_icoins"] ? '<img src="'.$value["coind_icoins"].'">' : "");?> <?php echo $value["symbol"];?></a></td>
 		                <td>6700</td>
 		                <td>89</td>
 		              </tr>
@@ -136,7 +136,7 @@
 						
 							<h4>Sell <div class="pull-right p_blancer">1 <?php echo $symbol;?></div></h4>
 							<hr>
-							<form>
+							<form class="sellForm">
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
 		                            <div class="col-sm-9 mx-auto">
@@ -147,20 +147,20 @@
 								<div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control input-sm" id="input2EmailForm" placeholder="Amount" required="true">
+		                                <input type="number" name="amount" class="form-control input-sm" id="input2EmailForm" placeholder="Amount" required="true">
 		                            </div>
 		                        </div>
 
 		                        <div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
+		                                <input type="number" name="prices" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
 		                            </div>
 		                        </div>
 		                        <div class="form-group row">
 		                            <label for="input2EmailForm" class="col-sm-3 col-form-label"><?php echo $this->views->lang("Total");?></label>
 		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amout" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
+		                                <input type="number" name="totals" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
 		                            </div>
 		                        </div>
 		                        <hr>
@@ -171,7 +171,7 @@
 		                        <?php if(!is_login()){ ?>
 		                        <button class="btn btn-primary">Login and Sell</button>
 		                    	<?php }else{ ?>
-		                    	<button class="btn btn-info">Sell</button>
+		                    	<button class="btn btn-info" id="sellprofucts">Sell</button>
 		                    	<?php } ?>
 
 		                       
@@ -204,7 +204,7 @@
 								</table>
 							</div>
 							<div class="sroolBody">
-								<table class="table table-hover table-sm">
+								<table class="table table-hover table-sm" id="buy">
 									<tbody>
 										<?php for ($i=0; $i<=10;$i++) { ?>
 											
@@ -233,7 +233,7 @@
 								</table>
 							</div>
 							<div class="sroolBody">
-								<table class="table table-hover table-sm">
+								<table class="table table-hover table-sm" id="sell">
 									<tbody>
 										<?php for ($i=0; $i<=10;$i++) { ?>
 											
@@ -325,6 +325,11 @@
 	
 
 	$(document).ready(function(){
+		$(".sellForm #sellprofucts").on("click", function(){
+			var prices = $(".sellForm [name=prices").val();
+			var amount = $(".sellForm [name=amount").val();
+			saveOrder(prices, amount, totals, "sell");
+		});
 
 		var containerChart = $("#containerChart").height();
 		$("#zoomcontainerChart").height(containerChart);

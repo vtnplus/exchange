@@ -1,11 +1,25 @@
 var getOrder = function(){
-	var template = $("#getOrder").html();
-	$.ajax('/exchange/order').done(function (data) {
-		$.each(data.result, function(i,v){
+	
+	
+	$.ajax('/exchange/order/'+coinbase+'/'+symbol).done(function (data) {
+		
+		totals = 0;
 
-			$("#order #item-"+i+" td:nth-child(1)").html(v.MarketName);
-			$("#order #item-"+i+" td:nth-child(2)").html(v.Ask);
-			$("#order #item-"+i+" td:nth-child(3)").html(v.Bid);
+		$("#sell td").html("");
+		$.each(data.sell, function(i,v){
+			totals = totals + (v.trade_amout * v.trade_prices);
+			$("#sell #item-"+i+" td:nth-child(1)").html(v.trade_amout);
+			$("#sell #item-"+i+" td:nth-child(2)").html(v.trade_prices);
+			$("#sell #item-"+i+" td:nth-child(3)").html(totals);
+		});
+
+		totals = 0;
+
+		$.each(data.buy, function(i,v){
+			totals = totals + (v.trade_amout * v.trade_prices);
+			$("#buy #item-"+i+" td:nth-child(1)").html(v.trade_amout);
+			$("#buy #item-"+i+" td:nth-child(2)").html(v.trade_prices);
+			$("#buy #item-"+i+" td:nth-child(3)").html(totals);
 		})
 	});
 };
@@ -144,6 +158,30 @@ var catal = function(){
 		buyAmount.val(buyTotals / buyPrices);
 	});
 };
+
+
+var saveOrder = function(prices, amount, totals, type){
+	var tym = "";
+	if(type == "sell"){
+		tym = "sell";
+	}else if(type == "buy"){
+		tym = "buy";
+	}
+
+	if(!tym || prices || amount || totals) {
+		alert("Error");
+		return false;
+	}
+
+	$.ajax({
+        url: "/exchange/submit",
+        type: "post",
+        data: {symbol : symbol, coinbase : coinbase, prices : prices, amount : amount}
+    }).done(function(data){
+    	alert("Submit Sqll OK");
+    });
+};
+
 
 jQuery(document).ready(function(){
 	getOrder();

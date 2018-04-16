@@ -44,7 +44,7 @@
 				Send <?php echo $info["symbol"];?> from private balancer to Trader Balancer before trade
 				<hr>
 				<input type="text" name="" class="form-control" id="sendtrade_amount"><br>
-				<button class="btn btn-info" id="sendtrade">Send Trade Balancer</button>
+				<button class="btn btn-info" id="sendtrade">Send Trade Balancer</button> <a class="btn btn-primary" href="<?php echo router("exchange/trade/BTC/".$info["symbol"]);?>" id="trades">Trade <?php echo $info["symbol"];?></a>
 			</div>
 		</div>
 	</div>

@@ -35,6 +35,10 @@ class Base extends \CI_Controller {
 		}
 	}
 
+	public function set_login(){
+		$this->api_login();
+		return $this;
+	}
 
 	public function need_login(){
 		if(!is_login()){
@@ -42,11 +46,14 @@ class Base extends \CI_Controller {
 		}
 	}
 
-	public function api($path, $arv=[], $method="post"){
+	public function api($path, $arv=[], $method="post", $login=false){
 
 		/*
 		Set Access Account ID
 		*/
+		if($login){
+			$this->api_login();
+		}
 
 		if(isset($this->account["account_id"]) && intval($this->account["account_id"]) > 0){
 
@@ -72,6 +79,7 @@ class Base extends \CI_Controller {
 		}
 
 		
+		
 
 		if(isset($data["success"]) == "ok" && isset($data["result"])){
 			return $data["result"];
@@ -85,10 +93,20 @@ class Base extends \CI_Controller {
 
 
 	public function sendmail($to, $subject, $msg){
-		$data = $this->api("scripts/sendmail",["to" => $to, "subject" => $subject, "msg" => $msg]);
-		if(isset($data["send"]) && $data["send"] == "ok"){
-			$this->session->set_flashdata('msg', 'Email được gởi thành công');
+		if($this->config->item("api_email")){
+			$data = $this->api("scripts/sendmail",["to" => $to, "subject" => $subject, "msg" => $msg]);
+			if(isset($data["send"]) && $data["send"] == "ok"){
+				$this->session->set_flashdata('msg', 'Email được gởi thành công');
+			}
+		}else{
+			$this->load->library('email'); // Note: no $config param needed
+			$this->email->from('thietkewebvip@gmail.com', 'thietkewebvip@gmail.com');
+			$this->email->to($to);
+			$this->email->subject($subject);
+			$this->email->message($msg);
+			$this->email->send();
 		}
+		
 	}
 
 

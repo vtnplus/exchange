@@ -145,7 +145,7 @@ class Account extends Base {
 		$data = $this->api("account/forget",[
 			"email" => $this->input->post("email")
 		]);
-		if($data["code"]){
+		if(isset($data["code"]) && $data["code"]){
 			$this->sendmail($this->input->post("email"),"Forget Password", "Your Password : ".$data["code"]);
 			$this->session->set_flashdata('msg', $this->views->lang("resend_password",true));
 			return redirect('/login', 'refresh');
