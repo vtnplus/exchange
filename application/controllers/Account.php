@@ -183,6 +183,46 @@ class Account extends Base {
 
 	}
 
+
+
+	/*
+	Profiles Mamber
+	*/
+
+	public function profiles(){
+		if(!is_login()){
+			$this->session->set_flashdata('error', 'Bạn cần đăng nhập hệ thống');
+			return redirect('/login', 'refresh');
+		}
+
+		if($this->input->post("submit") && $this->input->post("submit") == 1){
+
+		}
+
+		return $this->views->layout('account/profiles',["title" => $this->views->lang("profiles_title",true)]);
+
+	}
+
+
+	/*
+	Profiles Mamber
+	*/
+
+	public function changepass(){
+		if(!is_login()){
+			$this->session->set_flashdata('error', 'Bạn cần đăng nhập hệ thống');
+			return redirect('/login', 'refresh');
+		}
+
+		if($this->input->post("submit") && $this->input->post("submit") == 1){
+
+		}
+
+		return $this->views->layout('account/profiles',["title" => $this->views->lang("changepass_title",true)]);
+
+	}
+
+
 	public function google(){
 
 	}

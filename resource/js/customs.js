@@ -17,6 +17,7 @@ var getOrder = function(){
 
 		$.each(data.buy, function(i,v){
 			totals = totals + (v.trade_amout * v.trade_prices);
+
 			$("#buy #item-"+i+" td:nth-child(1)").html(v.trade_amout);
 			$("#buy #item-"+i+" td:nth-child(2)").html(v.trade_prices);
 			$("#buy #item-"+i+" td:nth-child(3)").html(totals);
@@ -45,6 +46,19 @@ var updateChart = function(){
 };
 
 var getMyOrder = function(){
+
+	$.ajax('/exchange/myorder/'+coinbase+'/'+symbol).done(function (data) {
+		
+		totals = 0;
+
+		var html = "";
+		$.each(data, function(i,v){
+			totals = totals + (v.trade_amout * v.trade_prices);
+			html += '<tr><td></td><td></td><td></td><td></td></tr>';
+		});
+		$("#myorder tbody").html(html);
+		
+	});
 
 };
 
@@ -184,7 +198,11 @@ var saveOrder = function(prices, amount, totals, type){
 
 
 jQuery(document).ready(function(){
+
 	getOrder();
 	setInterval(getOrder, 5000);
+
+
+	getMyOrder();
 	catal();
 });

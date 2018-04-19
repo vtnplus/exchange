@@ -270,6 +270,20 @@
 				  </li>
 				  
 				</ul>
+
+				<table class="table table-hover" id="myorder">
+					<thead>
+						<th>Coins</th>
+						<th>Prices</th>
+						<th>Amount</th>
+						<th>Totals</th>
+					</thead>
+					<tbody>
+						<tbody>
+
+						</tbody>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -314,6 +328,7 @@
 		overflow-y: scroll;
 	}
 </style>
+
 <script type="text/javascript">
 	var coinbase = '<?php echo $coinbase;?>';
 	var symbol = '<?php echo $symbol;?>';

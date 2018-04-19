@@ -5,7 +5,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse">
     <ul class="navbar-nav navbar-home mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -19,6 +19,15 @@
 
       <li class="nav-item">
         <a class="nav-link" href="<?php echo router("market");?>">Markets</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo router("masternode");?>">Share Masternode</a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo router("games");?>">Games</a>
       </li>
 
     </ul>

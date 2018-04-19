@@ -33,6 +33,11 @@ class Exchange extends Base {
 		return $this->views->json($data);
 	}
 
+	public function myorder($coinbase, $symbol){
+		$data = $this->api("exchange/myorder",["symbol" => $symbol,"basecoins" => $coinbase]);
+		return $this->views->json($data);
+	}
+
 	public function submit(){
 
 	}
