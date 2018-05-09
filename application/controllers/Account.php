@@ -190,6 +190,7 @@ class Account extends Base {
 	*/
 
 	public function profiles(){
+		$this->views->set_layout("layout/profiles");
 		if(!is_login()){
 			$this->session->set_flashdata('error', 'Bạn cần đăng nhập hệ thống');
 			return redirect('/login', 'refresh');

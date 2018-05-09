@@ -44,7 +44,9 @@
         Your Balance : 0.00001 BTC<br>
         Your Balance : 0.00001 USDT
       </div>
+      
       <a class="btn btn-outline-primary" href="<?php echo router("profiles");?>" style="margin-right: 15px;"><?php echo $this->views->lang("settings");?></a>
+
       <a class="btn btn-outline-secondary" href="<?php echo router("logout");?>" type="button"><?php echo $this->views->lang("signout");?></a>  
       <?php }else{ ?>
       <a class="btn btn-outline-primary" type="button" href="<?php echo router("login");?>" style="margin-right: 15px;"><?php echo $this->views->lang("login");?></a> 

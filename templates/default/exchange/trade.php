@@ -80,113 +80,7 @@
 	
 
 	
-	<div class="col-lg-6">
-		<div class="card fix500">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-md-6">
-						
-							<h4>Buy <div class="pull-right p_blancer">0.000006 <?php echo $coinbase;?></div></h4>
-							<hr>
-							<form class="buyForm">
-								<div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <?php echo (is_login() ? $balancer["balancer_basecoins"] : 0);?> <?php echo $coinbase;?>
-		                            </div>
-		                        </div>
-
-								<div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="text" name="amout" class="form-control" id="input2EmailForm" placeholder="Amout" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="text" name="prices" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("Total");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="text" name="totals" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
-		                            </div>
-		                        </div>
-
-		                        <hr>
-		                        
-		                        Fee : 
-		                        <hr>
-		                        <?php if(!is_login()){ ?>
-		                        <button class="btn btn-primary">Login and Buy</button>
-		                    	<?php }else{ ?>
-		                    	<button class="btn btn-primary">Buy</button>
-		                    	<?php } ?>
-		                        
-
-							</form>
-						
-					</div>
-
-					<div class="col-md-6">
-						
-							<h4>Sell <div class="pull-right p_blancer">1 <?php echo $symbol;?></div></h4>
-							<hr>
-							<form class="sellForm">
-								<div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <?php echo (is_login() ? $balancer["balancer_trader"] : 0);?> <?php echo $symbol;?>
-		                            </div>
-		                        </div>
-
-								<div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="amount" class="form-control input-sm" id="input2EmailForm" placeholder="Amount" required="true">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="prices" class="form-control" id="input2EmailForm" placeholder="Prices" required="true">
-		                            </div>
-		                        </div>
-		                        <div class="form-group row">
-		                            <label for="input2EmailForm" class="col-sm-3 col-form-label"><?php echo $this->views->lang("Total");?></label>
-		                            <div class="col-sm-9 mx-auto">
-		                                <input type="number" name="totals" class="form-control" id="input2EmailForm" placeholder="Total" required="true">
-		                            </div>
-		                        </div>
-		                        <hr>
-		                        
-		                        Fee : 
-		                        <hr>
-
-		                        <?php if(!is_login()){ ?>
-		                        <button class="btn btn-primary">Login and Sell</button>
-		                    	<?php }else{ ?>
-		                    	<button class="btn btn-info" id="sellprofucts">Sell</button>
-		                    	<?php } ?>
-
-		                       
-
-							</form>
-						
-					</div>
-
-
-					
-
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<div class="col-lg-6">
 		<div class="card fix500">
 			<div class="card-body">
@@ -254,6 +148,143 @@
 		</div>
 	</div>
 
+	<div class="col-lg-6">
+		<div class="card fix500">
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						
+							<h4>Buy <div class="pull-right small-text text-right">Fee : 0.1%<br>0.05% with BTCR</div></h4>
+							<hr>
+							<form class="buyForm">
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <?php echo (is_login() ? $balancer["balancer_basecoins"] : 0);?> <?php echo $coinbase;?>
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="prices" class="form-control  form-control-sm" id="input2EmailForm" placeholder="Prices" required="true">
+		                            </div>
+		                        </div>
+
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amount" class="form-control form-control-sm" id="input2EmailForm" placeholder="Amout" required="true">
+		                                <div class="row" style="margin-top:10px;">
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">25%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">50%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">75%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">100%</a>
+		                                	</div>
+		                                </div>
+		                            </div>
+		                        </div>
+
+		                        
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 col-form-label"><?php echo $this->views->lang("Total");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="totals" class="form-control form-control-sm" id="input2EmailForm" placeholder="Total">
+		                            </div>
+		                        </div>
+
+		                        
+		                        <hr>
+		                        <?php if(!is_login()){ ?>
+		                        <button class="btn btn-primary">Login and Buy</button>
+		                    	<?php }else{ ?>
+		                    	<button class="btn btn-secondary btn-block">Buy</button>
+		                    	<?php } ?>
+		                        
+
+							</form>
+						
+					</div>
+
+					<div class="col-md-6">
+						
+							<h4>Sell <div class="pull-right small-text text-right">Fee : 0.1%<br>0.05% with BTCR</div></h4>
+							<hr>
+							<form class="sellForm">
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("balancer");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <?php echo (is_login() ? $balancer["balancer_trader"] : 0);?> <?php echo $symbol;?>
+		                            </div>
+		                        </div>
+
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("prices");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="prices" class="form-control form-control-sm" id="input2EmailForm" placeholder="Prices" required="true">
+		                            </div>
+		                        </div>
+
+								<div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 form-control-label"><?php echo $this->views->lang("amout");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="amount" class="form-control form-control-sm" id="input2EmailForm" placeholder="Amount" required="true">
+		                                <div class="row" style="margin-top:10px;">
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">25%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">50%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">75%</a>
+		                                	</div>
+		                                	<div class="col">
+		                                		<a class="btn btn-sm btn-block btn-default">100%</a>
+		                                	</div>
+		                                </div>
+		                            </div>
+		                        </div>
+
+		                        
+		                        <div class="form-group row">
+		                            <label for="input2EmailForm" class="col-sm-3 col-form-label"><?php echo $this->views->lang("Total");?></label>
+		                            <div class="col-sm-9 mx-auto">
+		                                <input type="number" name="totals" class="form-control form-control-sm" id="input2EmailForm" placeholder="Total">
+		                            </div>
+		                        </div>
+		                        
+		                        <hr>
+
+		                        <?php if(!is_login()){ ?>
+		                        <button class="btn btn-primary">Login and Sell</button>
+		                    	<?php }else{ ?>
+		                    	<button class="btn btn-info btn-block" id="sellprofucts">Sell</button>
+		                    	<?php } ?>
+
+		                       
+
+							</form>
+						
+					</div>
+
+
+					
+
+				</div>
+				<hr>
+					Use BTCR -50% fee when your trade
+			</div>
+		</div>
+	</div>
 	<!--//My Trade -->
 	<div class="col-md-6">
 		<div class="card">
