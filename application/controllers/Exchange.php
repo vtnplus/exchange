@@ -39,6 +39,10 @@ class Exchange extends Base {
 	}
 
 	public function submit(){
-
+		$symbol = $this->input->post("symbol");
+		$coinbase = $this->input->post("coinbase");
+		$prices = $this->input->post("prices");
+		$amount = $this->input->post("amount");
+		$data = $this->set_login()->api("exchange/submit",["symbol" => $symbol,"basecoins" => $coinbase, "prices" => $prices,"amount" => $amount]);
 	}
 }

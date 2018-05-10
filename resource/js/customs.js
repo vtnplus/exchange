@@ -7,22 +7,26 @@ var getOrder = function(){
 
 		$("#sell td").html("");
 		$.each(data.sell, function(i,v){
-			totals = totals + (v.trade_amout * v.trade_prices);
-			$("#sell #item-"+i+" td:nth-child(1)").html(v.trade_amout);
-			$("#sell #item-"+i+" td:nth-child(2)").html(v.trade_prices);
-			$("#sell #item-"+i+" td:nth-child(3)").html(totals);
+			totals = parseFloat(totals) + parseFloat(v.trade_amount * v.trade_prices);
+			$("#sell #item-"+i+" td.amount").html(MarkNumber(v.trade_amount));
+			$("#sell #item-"+i+" td.prices").html(MarkNumber(v.trade_prices));
+			$("#sell #item-"+i+" td.totals").html(MarkNumber(totals));
 		});
 
 		totals = 0;
 
 		$.each(data.buy, function(i,v){
-			totals = totals + (v.trade_amout * v.trade_prices);
+			totals = parseFloat(totals) + parseFloat(v.trade_amount * v.trade_prices);
 
-			$("#buy #item-"+i+" td:nth-child(1)").html(v.trade_amout);
-			$("#buy #item-"+i+" td:nth-child(2)").html(v.trade_prices);
-			$("#buy #item-"+i+" td:nth-child(3)").html(totals);
+			$("#buy #item-"+i+" td.amount").html(MarkNumber(v.trade_amount));
+			$("#buy #item-"+i+" td.prices").html(MarkNumber(v.trade_prices));
+			$("#buy #item-"+i+" td.totals").html(MarkNumber(totals));
 		})
 	});
+};
+
+var MarkNumber = function(text){
+	return new Intl.NumberFormat("en-US", {useGrouping: false, minimumFractionDigits: 2, maximumFractionDigits: 7}).format(text);
 };
 
 var getSell = function(){
@@ -160,21 +164,22 @@ var chart =	function(){
 	};
 
 var catal = function(){
-	var buyAmount = $(".buyForm [name=amount]");
-	var buyTotals = $(".buyForm [name=totals]");
-	var buyPrices = $(".buyForm [name=prices]");
-
-	buyAmount.on("input", function(){
-		buyTotals.val(buyAmount * buyPrices);
+	$("form.buyForm input[name=amount]").on("input change", function(){
+		var balancer = MarkNumber($("form.buyForm").attr("data-balancer"));
+		var prices = MarkNumber($("form.buyForm input[name=prices]").val());
+		$("form.buyForm input[name=totals]").val(prices * $(this).val());
 	});
 
-	buyTotals.on("input", function(){
-		buyAmount.val(buyTotals / buyPrices);
+	$("form.buyForm input[name=prices]").on("input change", function(){
+		var balancer = MarkNumber($("form.buyForm").attr("data-balancer"));
+		var amount = MarkNumber($("form.buyForm input[name=amount]").val());
+		$("form.buyForm input[name=totals]").val(amount * $(this).val());
 	});
+
 };
 
 
-var saveOrder = function(prices, amount, totals, type){
+var saveOrder = function(prices, amount, type){
 	var tym = "";
 	if(type == "sell"){
 		tym = "sell";
@@ -182,7 +187,7 @@ var saveOrder = function(prices, amount, totals, type){
 		tym = "buy";
 	}
 
-	if(!tym || prices || amount || totals) {
+	if(!tym || prices || amount) {
 		alert("Error");
 		return false;
 	}
@@ -192,13 +197,76 @@ var saveOrder = function(prices, amount, totals, type){
         type: "post",
         data: {symbol : symbol, coinbase : coinbase, prices : prices, amount : amount}
     }).done(function(data){
-    	alert("Submit Sqll OK");
+    	alert(data);
     });
+};
+
+var sellprofucts = function(){
+	$("#btnSell").on("click", function(){
+		var form = $(this).parent().find("form.sellForm");
+		var prices = form.find("input[name=prices]").val();
+		var amount = form.find("input[name=amount]").val();
+		saveOrder(prices, amount,"sell");
+		form.find("input[name=prices]").val("");
+		form.find("input[name=amount]").val("");
+		form.find("input[name=totals]").val("");
+	});
+};
+var buyprofucts = function(){
+	$("#btnBuy").on("click", function(){
+		var form = $(this).parent().find("form.buyForm");
+		var prices = form.find("input[name=prices]").val();
+		var amount = form.find("input[name=amount]").val();
+		saveOrder(prices, amount,"buy");
+		form.find("input[name=prices]").val("");
+		form.find("input[name=amount]").val("");
+		form.find("input[name=totals]").val("");
+	});
+};
+
+var buySellClick = function(){
+	$("#sell tr").on("click", function(){
+		
+		var amount = $(this).find("td.amount").text();
+		var prices = MarkNumber($(this).find("td.prices").text());
+		var totals = MarkNumber($(this).find("td.totals").text());
+		var balancer = MarkNumber($("form.buyForm").attr("data-balancer"));
+		
+		var arm = 0;
+		if(balancer > totals){
+			arm = amount;
+		}else{
+			arm = MarkNumber(balancer / prices);
+		}
+
+
+		$("form.buyForm input[name=amount]").val(arm);
+		$("form.buyForm input[name=prices]").val(prices);
+		$("form.buyForm input[name=totals]").val(totals);
+
+		$("#buy tr:eq( "+$(this).index()+" )").click();
+	});
+
+	$("#buy tr").on("click", function(){
+		
+		var amount = MarkNumber($(this).find("td.amount").text());
+		var prices = MarkNumber($(this).find("td.prices").text());
+		var totals = MarkNumber($(this).find("td.totals").text());
+
+		$("form.sellForm input[name=amount]").val(amount);
+		$("form.sellForm input[name=prices]").val(prices);
+		$("form.sellForm input[name=totals]").val(totals);
+		//$("#sell tr:eq( "+$(this).index()+" )").click();
+	});
+
+	//$("#sell tr:nth-child( 1 )").click();
 };
 
 
 jQuery(document).ready(function(){
-
+	buySellClick();
+	sellprofucts();
+	buyprofucts();
 	getOrder();
 	setInterval(getOrder, 5000);
 

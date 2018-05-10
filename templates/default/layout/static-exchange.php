@@ -30,21 +30,6 @@
 <footer>
   <?php include __DIR__."/../footer.php";?>
 </footer>
-<script type="text/javascript">
-  $(document).ready(function(){
-    var windowHeight = $("body").outerHeight();
-    var barHeight = $("header").outerHeight();
-    var height = windowHeight - barHeight;
-    var withs = $(window).width();
-    if(withs < 780){
-      $(".slidebar").css("margin-left","-100%");
-    }else{
-      $(".slidebar").css("margin-left","0");
-    }
-    $(".slidebar").height(height);
 
-    $(".navbar-brand").width("200");
-  });
-</script>
 </body>
 </html>
