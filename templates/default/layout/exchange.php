@@ -10,6 +10,8 @@
     <script type="text/javascript" src="<?php echo resource("js/app.js");?>"></script>
     <script type="text/javascript" src="<?php echo resource("js/customs.js");?>"></script>
     <link href="<?php echo base_url("templates/default/css/app.css");?>" rel="stylesheet">
+    
+    
   </head>
 
 <body>

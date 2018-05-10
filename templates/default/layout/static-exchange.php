@@ -10,6 +10,7 @@
     <script type="text/javascript" src="<?php echo resource("js/app.js");?>"></script>
     <script type="text/javascript" src="<?php echo resource("js/customs.js");?>"></script>
     <link href="<?php echo base_url("templates/default/css/app.css");?>" rel="stylesheet">
+    <link href="<?php echo resource("themify-icons/themify-icons.css");?>" rel="stylesheet">
   </head>
 
 <body>

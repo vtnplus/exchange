@@ -80,7 +80,7 @@ class Base extends \CI_Controller {
 		}
 
 		
-		
+		//print_r($data);
 
 		if(isset($data["success"]) == "ok" && isset($data["result"])){
 			return $data["result"];

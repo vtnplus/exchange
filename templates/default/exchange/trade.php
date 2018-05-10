@@ -53,16 +53,19 @@
 
 				<table class="table table-hover">
 		            <thead>
-		              <th style="border-top:0;">Name</th>
+		              <th style="border-top:0;" colspan="2">Name</th>
 		              <th style="border-top:0;">Prices</th>
-		              <th style="border-top:0;">Vol</th>
+		              <th style="border-top:0;" colspan="2">Vol</th>
+		              
 		            </thead>
 		            <tbody>
 		              <?php foreach ($coind as $key => $value) { ?>
 		              <tr>
-		                <td><a href="<?php echo router("exchange/trade/".$coinbase."/".$value["symbol"]);?>"><?php echo ($value["coind_icoins"] ? '<img src="'.$value["coind_icoins"].'">' : "");?> <?php echo $value["symbol"];?></a></td>
+		              	<td style="width:20px;"><?php echo ($value["coind_icons"] ? '<img src="'.$value["coind_icons"].'" style="width:18px;">' : "<i class='ti-angle-double-right green-color'></i>");?> </td>
+		                <td><a href="<?php echo router("exchange/trade/".$coinbase."/".$value["symbol"]);?>"><?php echo $value["symbol"];?></a></td>
 		                <td>6700</td>
 		                <td>89</td>
+		                <td class="text-right" style="width: 20px;"><i class="ti-star red-color"></i></td>
 		              </tr>
 		              <?php } ?>
 		              

@@ -21,9 +21,11 @@ class Exchange extends Base {
 
 	public function trade($coinbase, $symbol){
 		$data = $this->api("exchange/order",["symbol" => $symbol,"basecoins" => $coinbase]);
+		$coind = $this->api("coind",["basecoins" => $coinbase]);
 		$balancer = $this->set_login()->api("wallet/balancer",["symbol" => $symbol,"basecoins" => $coinbase]);
 		
-		$this->views->set_globals(["coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer,"coind" => $this->api("coind",["basecoins" => $coinbase])]);
+		
+		$this->views->set_globals(["coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer,"coind" => $coind]);
 		
 		return $this->views->layout("exchange/trade",["title" => $coinbase."-".$symbol." Trader", "data" => $data,"coinbase" => $coinbase, "symbol" => $symbol,"balancer" => $balancer]);
 	}
